@@ -35,6 +35,24 @@ const IconMap: Record<string, ComponentType<{ size?: number }>> = {
   Scaling,
 };
 
+const REALISATIONS = [
+  {
+    id: 1,
+    title: 'Plan de cuisine en marbre',
+    image: '/images/marbre-01.jpg',
+  },
+  {
+    id: 2,
+    title: 'Finition intérieure en pierre',
+    image: '/images/marbre-02.jpg',
+  },
+  {
+    id: 3,
+    title: 'Pose et habillage en granit',
+    image: '/images/marbre-03.jpg',
+  },
+];
+
 export default function Home() {
   const fadeInUp = {
     initial: { opacity: 0, y: 20 },
@@ -202,6 +220,45 @@ export default function Home() {
                 </motion.div>
               );
             })}
+          </motion.div>
+        </div>
+      </section>
+
+      <section className="bg-marble-white py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto mb-16 max-w-3xl space-y-4 text-center">
+            <h2 className="font-display text-4xl font-bold text-stone-dark">Nos réalisations</h2>
+            <div className="mx-auto h-1.5 w-24 rounded-full bg-accent-gold" />
+            <p className="text-lg font-light text-stone-dark/60">
+              Quelques exemples de projets réalisés en marbre et granit.
+            </p>
+          </div>
+
+          <motion.div
+            variants={stagger}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
+          >
+            {REALISATIONS.map((realisation) => (
+              <motion.article
+                key={realisation.id}
+                variants={fadeInUp}
+                className="group overflow-hidden rounded-3xl border border-stone-100 bg-white shadow-sm transition-all hover:shadow-xl"
+              >
+                <div className="aspect-[4/3] overflow-hidden">
+                  <img
+                    src={realisation.image}
+                    alt={realisation.title}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="font-display text-xl font-bold text-stone-dark">{realisation.title}</h3>
+                </div>
+              </motion.article>
+            ))}
           </motion.div>
         </div>
       </section>
